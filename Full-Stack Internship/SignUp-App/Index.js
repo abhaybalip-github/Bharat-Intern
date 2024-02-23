@@ -1,21 +1,27 @@
-const print = (data)=> console.log(data)
+// Node js
+
+const print = (data) => console.log(data)
 
 const express = require('express')
+const nodemon = require('nodemon')
+const fs = require('fs')
+const exp = require('constants')
 
 const app = express()
-app.get('/',function(req,res){
-    if(! req.errored){
-        res.send(__dirname+'Index.html')
+
+app.use('/', express.static(__dirname + "/Asset",))
+
+app.get('/app', function (req, res) {
+    if (req.errored) {
+        print('error occure !')
+        app.close()
     }
-    else{
-        res.send('Error Occured !')
+    else {
+        res.sendFile(__dirname + "/Asset/Index.html");
     }
 })
 
-app.post('/send',function(req,res){
 
-})
-
-app.listen(1000,function(){
+app.listen(1000, function (err) {
     print('server started')
 })
