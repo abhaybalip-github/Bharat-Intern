@@ -24,7 +24,7 @@
             <p class="text3">sign-up page</p>
         </div>
         <div class="center">
-            <form id="ip-form">
+            <form action="/signup" method="POST" id="ip-form">
                 <label for="ip-name" id="label-name">Name :</label>
                 <input type="text" name="ip-name" id="ip-name">
 
@@ -44,7 +44,7 @@
 
                 <div id="btn-reset" onclick="reset()">Reset</div>
 
-                <div type="submit" id="btn-submit" onclick="submit()">Submit</div>
+                <button type="submit" id="btn-submit" >Submit</button>
 
                 <emoji id="emoji">😊</emoji>
             </form>
