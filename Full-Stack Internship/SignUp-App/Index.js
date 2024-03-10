@@ -8,7 +8,7 @@ const { mongoClient } = require('mongodb')
 // mongodb database info :
 const uri = "mongodb://localhost:27017/userData"
 const dbName = "userData"
-const collectionName = "user"
+const collectionName = "userData"
 async function StoreData(data) {
     try {
         const client = await MongoClient.connect(uri, {
