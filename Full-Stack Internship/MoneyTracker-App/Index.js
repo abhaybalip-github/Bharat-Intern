@@ -1,3 +1,5 @@
+const print = (data) => console.log(data)
+
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -16,7 +18,20 @@ const transactionSchema = new mongoose.Schema({
 });
 const Transaction = mongoose.model('Transaction', transactionSchema)
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+
+
+app.get('/',async function (req, res) {
+    try {
+        const transactions = await Transaction.find()
+        res.json(transactions)
+    } catch (err) {
+        console.error(err)
+        res.status(500).send('Error retrieving transactions')
+    }
+})
+
+
 app.post('/add-transaction', async (req, res) => {
     try {
         const transaction = new Transaction(req.body)
@@ -28,16 +43,7 @@ app.post('/add-transaction', async (req, res) => {
     }
 })
 
-app.get('/get-transactions', async (req, res) => {
-    try {
-        const transactions = await Transaction.find()
-        res.json(transactions)
-    } catch (err) {
-        console.error(err)
-        res.status(500).send('Error retrieving transactions')
-    }
-})
-
-app.listen(1000,function(err){
-    if(err) print("Error :"+err)
+app.listen(1000, function (err) {
+    if (err) print("Error :" + err)
+    else print('server started')
 })
